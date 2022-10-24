@@ -1,0 +1,24 @@
+syntax = "v2"
+
+info (
+	title: "Telegram Gateway"
+	desc: "Gateway for operate telegram server"
+	author: "Michael Chernyakoff"
+	email: "chernyakoff@gmail.com"
+)
+
+type MessageResponse{ Message string `json:"message"` }
+
+type AccountUpsertRequest {
+	Phone   string `json:"phone"`
+	AppId   int    `json:"appid"`
+	AppHash string `json:"apphash"`
+	Session string `json:"session"`
+}
+
+service gateway-api {
+	@handler Ping
+	get /ping returns(MessageResponse)
+	@handler AccountUpsert
+	post /account/upsert(AccountUpsertRequest) returns(MessageResponse)
+}

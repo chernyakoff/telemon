@@ -1,0 +1,19 @@
+package svc
+
+import (
+	"github.com/chernyakoff/telemon/account/types/account"
+	"github.com/chernyakoff/telemon/gateway/internal/config"
+	"github.com/zeromicro/go-zero/zrpc"
+)
+
+type ServiceContext struct {
+	Config     config.Config
+	AccountRpc account.Account
+}
+
+func NewServiceContext(c config.Config) *ServiceContext {
+	return &ServiceContext{
+		Config:     c,
+		AccountRpc: account.NewAccount(zrpc.MustNewClient(c.AccountRpc)),
+	}
+}

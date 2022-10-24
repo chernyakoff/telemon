@@ -3,9 +3,8 @@ package logic
 import (
 	"context"
 
+	"github.com/chernyakoff/telemon/account/client"
 	"github.com/chernyakoff/telemon/gateway/internal/svc"
-	"github.com/chernyakoff/telemon/gateway/internal/types"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -23,8 +22,7 @@ func NewAccountUpsertLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Acc
 	}
 }
 
-func (l *AccountUpsertLogic) AccountUpsert(req *types.AccountUpsertRequest) (resp *types.MessageResponse, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+func (l *AccountUpsertLogic) AccountUpsert(req *client.AccountUpsertRequest) (resp *client.MessageResponse, err error) {
+	messageResponse, err := l.svcCtx.AccountRpc.Upsert(l.ctx, req)
+	return messageResponse, err
 }

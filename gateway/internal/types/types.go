@@ -6,8 +6,8 @@ type MessageResponse struct {
 }
 
 type AccountUpsertRequest struct {
-	Phone   string `json:"phone"`
-	AppId   int    `json:"appid"`
-	AppHash string `json:"apphash"`
-	Session string `json:"session"`
+	Phone   int64 `json:"Phone"`
+	AppId   int64  `json:"AppId"`
+	AppHash string `json:"AppHash"`
+	Session string `json:"Session"`
 }
